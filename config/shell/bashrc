@@ -11,6 +11,7 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 
 # environment variables
 export EDITOR="/usr/bin/nvim"
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 
 # aliases
 alias lvim="NVIM_APPNAME=lazyvim nvim"
@@ -21,9 +22,15 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-	PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+# PATH variable
+if ! [[ "$PATH" =~ "$XDG_DATA_HOME/pyenv/bin:" ]]; then
+	PATH="$XDG_DATA_HOME/pyenv/bin:$PATH"
+fi
+if ! [[ "$PATH" =~ "$HOME/bin:" ]]; then
+	PATH="$HOME/bin:$PATH"
+fi
+if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
+	PATH="$HOME/.local/bin:$PATH"
 fi
 export PATH
 
