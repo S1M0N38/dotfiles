@@ -124,8 +124,26 @@ create_links() {
 	create_link /usr/share/backgrounds/default.png "$HOME/.config/sway/background.png"
 }
 
+post_install() {
+	echo
+	echo "Here are some other thing you want to install:"
+	echo
+	echo "Python"
+	echo "  The suggests way is to use pyenv: https://github.com/pyenv/pyenv/tree/master"
+	echo "  Remember to install dependencies for compile python, i.e."
+	echo "  https://github.com/pyenv/pyenv/wiki#suggested-build-environment"
+	echo "  You can also compile optimize pytohn version"
+	echo "  https://github.com/pyenv/pyenv/blob/master/plugins/python-build/README.md#building-for-maximum-performance"
+	echo
+	echo "NodeJS"
+	echo "  It's required to run Copilot in lazyvim. Install with"
+	echo "  sudo dnf install nodejs"
+	echo "  There in no need to install neovim package for nodejs."
+}
+
 ensure_developer_dir
 ensure_ssh_key
 install_apps
 install_git_open
 create_links
+post_install
