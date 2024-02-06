@@ -14,8 +14,8 @@ opacity = 0.9
 padding = {x = 3, y = 3}
 
 [font]
-normal = {family = "Maple Mono SC NF", style="Regular"}
-bold = {family = "Maple Mono SC NF", style="Bold"}
-italic = {family = "Maple Mono SC NF", style="Italic"}
+normal = {family = "Maple Mono SC NF", style="Light"}
+bold = {family = "Maple Mono SC NF", style="Regular"}
+italic = {family = "Maple Mono SC NF", style="LightItalic"}
 bold_italic = {family = "Maple Mono SC NF", style="BoldItalic"}
-size = 10.5
+size = 14
