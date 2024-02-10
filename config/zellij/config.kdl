@@ -1,0 +1,26 @@
+
+keybinds  {
+    unbind "Ctrl h"
+    normal {
+        bind "Alt a" { ToggleFloatingPanes; }
+        bind "Alt Right" { GoToNextTab; }
+        bind "Alt Left" { GoToPreviousTab; }
+    }
+    move {
+        bind "Ctrl w" { SwitchToMode "Normal"; }
+    }
+    shared_except "move" "locked" {
+        bind "Ctrl w" { SwitchToMode "Move"; }
+    }
+}
+
+plugins {
+    tab-bar { path "tab-bar"; }
+    status-bar { path "status-bar"; }
+    strider { path "strider"; }
+    compact-bar { path "compact-bar"; }
+    session-manager { path "session-manager"; }
+}
+
+pane_frames false
+theme "catppuccin-macchiato"
