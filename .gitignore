@@ -1,3 +1,8 @@
+# lazygit
 config/lazygit/state.yml
 config/lazyvim/lua/plugins/example.lua
 config/sway/background.png
+
+
+# macos hidden files
+.DS_Store
