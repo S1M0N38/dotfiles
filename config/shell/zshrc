@@ -1,0 +1,40 @@
+# zsh options
+setopt no_beep
+autoload -Uz colors && colors
+
+# vi mode
+source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# secrets
+source "$XDG_CONFIG_HOME/zsh/.secrets"
+
+# apps
+alias mvim="NVIM_APPNAME=mini nvim"
+alias kvim="NVIM_APPNAME=kickstart nvim"
+alias lvim="NVIM_APPNAME=lazyvim nvim"
+alias lgit="lazygit"
+
+# ls
+alias ll='ls -G'
+alias ll='ls -GlahF'
+alias lt='ls -Glt'
+
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+zvm_after_init_commands+=("source $XDG_CONFIG_HOME/fzf/fzf.zsh")
+
+# mitmproxy XDG workaround
+alias mitmweb="mitmweb --set confdir=$XDG_CONFIG_HOME/mitmproxy"
+alias mitmproxy="mitmproxy --set confdir=$XDG_CONFIG_HOME/mitmproxy"
+
+# github copilot
+eval "$(gh copilot alias -- bash)"
+
+# prompt
+eval "$(starship init zsh)"
