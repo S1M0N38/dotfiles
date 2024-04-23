@@ -2,14 +2,15 @@
 
 install_fonts() {
 	echo "- Installing Maple Font..."
-	font_dir="$HOME/.local/share/fonts/$1"
-	font_url="$2"
-	mkdir -p "$font_dir"
-	curl -so "$font_dir".zip -L "$font_url"
-	unzip "$font_dir".zip -d "$font_dir"
+	fonts_dir="$HOME/Library/Fonts"
+	font_url="https://github.com/subframe7536/maple-font/releases/download/v6.4/MapleMono-SC-NF.zip"
+	mkdir -p "$fonts_dir"
+	curl -so "$fonts_dir/MapleMono-SC-NF.zip" -L "$font_url"
+	open "$fonts_dir"
+	echo "Unzip the .zip file manually using a GUI application in the Fonts directory."
+	read -p "Then you can delete the zip and press enter to continue..."
 	fc-cache -V
-	rm -rf "$font_dir".zip
-	echo "Font installed at $font_dir!"
+	echo "Font installed at $fonts_dir!"
 	echo
 }
 
@@ -54,6 +55,22 @@ ensure_developer_dir() {
 		echo "Created the ~/Developer directory."
 	else
 		echo "The ~/Developer directory already exists."
+	fi
+}
+
+ensure_config_dir() {
+	if [ ! -d ~/.config ]; then
+		mkdir ~/.config
+		echo "Created the ~/.config directory."
+	else
+		echo "The ~/.config directory already exists."
+	fi
+
+	if [ ! -d ~/.config/zsh ]; then
+		mkdir ~/.config/zsh
+		echo "Created the ~/.config/zsh directory."
+	else
+		echo "The ~/.config/zsh directory already exists."
 	fi
 }
 
@@ -105,11 +122,10 @@ create_link() {
 
 create_links() {
 
-	# basic config
-	create_link "$(pwd)/config/shell/bashrc" "$HOME/.bashrc"
-	create_link "$(pwd)/config/shell/inputrc" "$HOME/.inputrc"
-	create_link "$(pwd)/config/sway" "$HOME/.config/sway"
-	create_link "$(pwd)/config/gtk-3.0" "$HOME/.config/gtk-3.0"
+	# zsh
+	create_link "$(pwd)/config/shell/zshenv" "$HOME/.zshenv"
+	create_link "$(pwd)/config/shell/zshrc" "$HOME/.config/zsh/.zshrc"
+	create_link "$(pwd)/config/shell/secrets" "$HOME/.config/zsh/.secrets"
 
 	# git and nvim
 	create_link "$(pwd)/config/git" "$HOME/.config/git"
@@ -120,8 +136,20 @@ create_links() {
 	create_link "$(pwd)/config/lazyvim" "$HOME/.config/lazyvim"
 	create_link "$(pwd)/config/lazygit" "$HOME/.config/lazygit"
 
+	# zellij
+	create_link "$(pwd)/config/zellij" "$HOME/.config/zellij"
+
+	# papis
+	create_link "$(pwd)/config/papis" "$HOME/.config/papis"
+
+	# kickstart
+	create_link "$(pwd)/config/kickstart" "$HOME/.config/kickstart"
+
+	# kickstart
+	create_link "$(pwd)/config/mini" "$HOME/.config/mini"
+
 	# Set up the default background
-	create_link /usr/share/backgrounds/default.png "$HOME/.config/sway/background.png"
+	# create_link /usr/share/backgrounds/default.png "$HOME/.config/sway/background.png"
 }
 
 post_install() {
@@ -141,9 +169,14 @@ post_install() {
 	echo "  There in no need to install neovim package for nodejs."
 }
 
-ensure_developer_dir
-ensure_ssh_key
-install_apps
-install_git_open
+ensure_config_dir
+# ensure_developer_dir
+# ensure_ssh_key
+# install_apps
+
+# TODO: ask permission
+#install_fonts
+
+# install_git_open
 create_links
-post_install
+#post_install
