@@ -139,6 +139,9 @@ create_links() {
 	# zellij
 	create_link "$(pwd)/config/zellij" "$HOME/.config/zellij"
 
+	# fzf
+	create_link "$(pwd)/config/fzf" "$HOME/.config/fzf"
+
 	# papis
 	create_link "$(pwd)/config/papis" "$HOME/.config/papis"
 
