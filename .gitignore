@@ -3,6 +3,9 @@ config/lazygit/state.yml
 config/lazyvim/lua/plugins/example.lua
 config/sway/background.png
 
+# secrets
+config/youtube-dl/cookies.txt
+config/shell/secrets
 
 # macos hidden files
 .DS_Store
