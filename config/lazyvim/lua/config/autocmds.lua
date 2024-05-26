@@ -87,3 +87,18 @@ vim.api.nvim_create_autocmd("User", {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = "background",
+  group = vim.api.nvim_create_augroup("alacritty_colorscheme_gruvbox", { clear = true }),
+  callback = function()
+    local background = vim.api.nvim_get_option_value("background", { scope = "global" })
+    if vim.g.colors_name == "gruvbox" then
+      if background == "dark" then
+        set_alacritty_colorscheme("gruvbox")
+      else
+        set_alacritty_colorscheme("gruvbox-light")
+      end
+    end
+  end,
+})

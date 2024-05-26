@@ -2,7 +2,16 @@
 local symlink = vim.fn.expand("$XDG_CONFIG_HOME/alacritty/colorscheme.toml")
 local source = vim.loop.fs_readlink(symlink)
 if source then
-  vim.g.colorscheme = source:match("^.+/(.+)$"):match("(.+)%..+")
+  local colorscheme = source:match("^.+/(.+)$"):match("(.+)%..+")
+  if colorscheme == "gruvbox-light" then
+    vim.g.colorscheme = "gruvbox"
+    vim.opt.background = "light"
+  elseif colorscheme == "cyberdream-light" then
+    vim.g.colorscheme = "cyberdream"
+    -- TODO: add some way to set the light version of the colorscheme
+  else
+    vim.g.colorscheme = colorscheme
+  end
 else
   vim.notify("Failed to resolve symlink: " .. symlink, vim.log.levels.WARN)
   vim.g.colorscheme = "tokyonight"
