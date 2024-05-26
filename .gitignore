@@ -1,11 +1,7 @@
-# lazygit
-config/lazygit/state.yml
-config/lazyvim/lua/plugins/example.lua
+# symlinked files
 config/sway/background.png
+config/alacritty/colorscheme.toml
 
 # secrets
 config/youtube-dl/cookies.txt
 config/shell/secrets
-
-# macos hidden files
-.DS_Store
