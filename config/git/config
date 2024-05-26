@@ -1,3 +1,6 @@
+[core]
+  excludesfile = ~/.config/git/gitignore
+
 [user]
   name = S1M0N38
   email = bertolottosimone@gmail.com
@@ -9,8 +12,23 @@
 [gpg]
   format = ssh
 
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/allowed_signers
+
 [init]
   defaultBranch = main
 
 [pull]
   rebase = false
+
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
+[tag]
+  gpgsign = true
+
+[format]
+  signoff = true
