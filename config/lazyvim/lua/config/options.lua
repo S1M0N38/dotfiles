@@ -1,3 +1,13 @@
+-- Setup colorscheme by using current Alacritty colorscheme
+local symlink = vim.fn.expand("$XDG_CONFIG_HOME/alacritty/colorscheme.toml")
+local source = vim.loop.fs_readlink(symlink)
+if source then
+  vim.g.colorscheme = source:match("^.+/(.+)$"):match("(.+)%..+")
+else
+  vim.notify("Failed to resolve symlink: " .. symlink, vim.log.levels.WARN)
+  vim.g.colorscheme = "tokyonight"
+end
+
 -- Disable copy to system clipboard. See keymaps
 vim.opt.clipboard = ""
 
