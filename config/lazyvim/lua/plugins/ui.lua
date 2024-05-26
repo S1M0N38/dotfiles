@@ -3,6 +3,9 @@ return {
     "folke/zen-mode.nvim",
     opts = {},
     cmd = "ZenMode",
+    keys = {
+      { "<leader>uz", "<cmd>ZenMode<cr>", desc = "Toggle Zen Mode" },
+    },
   },
   {
     "rcarriga/nvim-notify",
@@ -23,6 +26,9 @@ return {
   {
     "folke/noice.nvim",
     opts = {
+      messages = {
+        enabled = false,
+      },
       routes = {
         {
           filter = {
