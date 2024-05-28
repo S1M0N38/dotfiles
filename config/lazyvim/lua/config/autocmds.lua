@@ -109,6 +109,13 @@ vim.api.nvim_create_autocmd("OptionSet", {
         set_alacritty_colorscheme("solarized-light")
       end
     end
+    if vim.g.colors_name == "everforest" then
+      if background == "dark" then
+        set_alacritty_colorscheme("everforest")
+      else
+        set_alacritty_colorscheme("everforest-light")
+      end
+    end
   end,
 })
 
