@@ -102,6 +102,13 @@ vim.api.nvim_create_autocmd("OptionSet", {
         set_alacritty_colorscheme("gruvbox-light")
       end
     end
+    if vim.g.colors_name == "solarized" then
+      if background == "dark" then
+        set_alacritty_colorscheme("solarized")
+      else
+        set_alacritty_colorscheme("solarized-light")
+      end
+    end
   end,
 })
 

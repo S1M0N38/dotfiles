@@ -68,6 +68,14 @@ return {
       },
     },
   },
+  {
+    "maxmx03/solarized.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+    },
+  },
   -- Add here other colorschemes ...
   -- And remember to add the corresponding Alacritty colorscheme.
   {
