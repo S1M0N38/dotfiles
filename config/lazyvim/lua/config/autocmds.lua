@@ -2,7 +2,8 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("config_" .. name, { clear = true })
 end
 
--- sync with server on save (only if the sync script exists)
+-- Sync with server on save (only if the sync script exists)
+
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = augroup("sync_with_server"),
   callback = function()
@@ -32,6 +33,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 -- Compile single C file on save
+
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = augroup("compile_c"),
   pattern = "*.c",
@@ -70,14 +72,14 @@ local function set_alacritty_colorscheme(name)
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-  group = vim.api.nvim_create_augroup("alacritty_colorscheme", { clear = true }),
+  group = augroup("alacritty_colorscheme"),
   callback = function(args)
     set_alacritty_colorscheme(args.match)
   end,
 })
 
 vim.api.nvim_create_autocmd("User", {
-  group = vim.api.nvim_create_augroup("alacritty_colorscheme_cyberdream", { clear = true }),
+  group = augroup("alacritty_colorscheme_cyberdream"),
   pattern = "CyberdreamToggleMode",
   callback = function(event)
     if event.data == "default" then
@@ -90,7 +92,7 @@ vim.api.nvim_create_autocmd("User", {
 
 vim.api.nvim_create_autocmd("OptionSet", {
   pattern = "background",
-  group = vim.api.nvim_create_augroup("alacritty_colorscheme_gruvbox", { clear = true }),
+  group = augroup("alacritty_colorscheme_gruvbox"),
   callback = function()
     local background = vim.api.nvim_get_option_value("background", { scope = "global" })
     if vim.g.colors_name == "gruvbox" then
@@ -100,5 +102,14 @@ vim.api.nvim_create_autocmd("OptionSet", {
         set_alacritty_colorscheme("gruvbox-light")
       end
     end
+  end,
+})
+
+-- Python Config
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  group = augroup("ft_python"),
+  callback = function()
+    vim.cmd("set colorcolumn=89")
   end,
 })
