@@ -1,6 +1,5 @@
 themes {
-    // cyberdream
-    default {
+    cyberdream {
         bg "#16181a"
         fg "#ffffff"
         black "#7b8496"
