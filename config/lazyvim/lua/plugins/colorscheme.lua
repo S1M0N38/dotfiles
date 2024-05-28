@@ -58,7 +58,16 @@ return {
       },
     },
   },
-
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      options = {
+        transparent = true,
+      },
+    },
+  },
   -- Add here other colorschemes ...
   -- And remember to add the corresponding Alacritty colorscheme.
   {
