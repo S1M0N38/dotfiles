@@ -76,6 +76,19 @@ return {
       transparent = true,
     },
   },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      styles = {
+        bold = true,
+        italic = true,
+        transparency = true,
+      },
+    },
+  },
   -- Add here other colorschemes ...
   -- And remember to add the corresponding Alacritty colorscheme.
   {
