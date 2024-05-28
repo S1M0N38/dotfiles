@@ -33,6 +33,31 @@ return {
       },
     },
   },
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent_mode = true,
+    },
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
+        },
+      },
+    },
+  },
 
   -- Add here other colorschemes ...
   -- And remember to add the corresponding Alacritty colorscheme.
