@@ -1,0 +1,19 @@
+[user]
+  name = S1M0N38
+  email = bertolottosimone@gmail.com
+  signingkey = ~/.ssh/id_ed25519.pub
+
+[commit]
+  gpgsign = true
+
+[gpg]
+  format = ssh
+
+[init]
+  defaultBranch = main
+
+[pull]
+  rebase = true
+
+[tag]
+  gpgsign = true
