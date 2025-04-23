@@ -3,3 +3,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_CACHE_HOME="$HOME/.cache"
+
+export UV_CACHE_DIR="$XDG_CACHE_HOME/uv"
+export UV_PYTHON_PREFERENCE="only-managed"
