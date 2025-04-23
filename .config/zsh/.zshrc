@@ -1,5 +1,5 @@
 # Add binaries in ~/.local/bin to $PATH
-source "$HOME/.local/bin/env"
+source "$XDG_BIN_HOME/env"
 
 # Aliases
 alias ll='ls -lah --color=auto'
