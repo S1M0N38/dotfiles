@@ -6,3 +6,5 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 export UV_CACHE_DIR="$XDG_CACHE_HOME/uv"
 export UV_PYTHON_PREFERENCE="only-managed"
+
+export EDITOR="nvim"
