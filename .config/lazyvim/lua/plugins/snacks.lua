@@ -2,11 +2,14 @@ return {
   "folke/snacks.nvim",
   opts = {
     dashboard = {
+      sections = {
+        { section = "keys", gap = 1, padding = 1 },
+      },
       preset = {
         pick = function(cmd, opts)
           return LazyVim.pick(cmd, opts)()
         end,
-        header = "",
+        -- header = "",
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
