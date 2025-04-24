@@ -20,6 +20,9 @@ function lgit() {
 }
 
 # enable vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]]; then
     echo -ne '\e[1 q'
@@ -27,9 +30,16 @@ function zle-keymap-select {
     echo -ne '\e[5 q'
   fi
 }
-bindkey -v
 zle -N zle-keymap-select
-export KEYTIMEOUT=1
+
+function vi-yank-xclip {
+    zle vi-yank
+    echo "$CUTBUFFER" | pbcopy
+}
+zle -N vi-yank-xclip
+
+bindkey -M vicmd ' y' vi-yank-xclip
+bindkey -M visual ' y' vi-yank-xclip
 
 # Prompt
 eval "$(starship init zsh)"
