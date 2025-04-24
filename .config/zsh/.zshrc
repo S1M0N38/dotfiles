@@ -19,5 +19,17 @@ function lgit() {
   fi
 }
 
+# enable vi mode
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+bindkey -v
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
+
 # Prompt
 eval "$(starship init zsh)"
