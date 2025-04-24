@@ -8,3 +8,8 @@ export UV_CACHE_DIR="$XDG_CACHE_HOME/uv"
 export UV_PYTHON_PREFERENCE="only-managed"
 
 export EDITOR="nvim"
+
+# Add XDG_BIN_HOME to PATH if not already present
+if [[ ":$PATH:" != *":$XDG_BIN_HOME:"* ]]; then
+    export PATH="$XDG_BIN_HOME:$PATH"
+fi

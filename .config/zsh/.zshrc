@@ -1,6 +1,3 @@
-# Add binaries in ~/.local/bin to $PATH
-source "$XDG_BIN_HOME/env"
-
 # Add zsh functions to $fpath
 fpath=("$XDG_DATA_HOME/zsh/site-functions" $fpath)
 
