@@ -1,5 +1,4 @@
 start-at-login = true
-
 automatically-unhide-macos-hidden-apps = true
 
 [gaps]
@@ -11,13 +10,14 @@ outer.top = 0
 outer.right = 0
 
 [mode.main.binding]
-alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
+alt-shift-semicolon = 'mode service'
+alt-shift-slash = 'layout tiles horizontal vertical'
+alt-shift-comma = 'layout accordion horizontal vertical'
 
-alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
-alt-l = 'focus right'
+alt-shift-h = 'focus left'
+alt-shift-j = 'focus down'
+alt-shift-k = 'focus up'
+alt-shift-l = 'focus right'
 
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
@@ -41,7 +41,6 @@ alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
 
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
-
 
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
@@ -132,7 +131,6 @@ run = 'move-node-to-workspace 8'
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
 run = 'move-node-to-workspace 8'
-
 
 # Picture-in-Picture: floating by default
 
