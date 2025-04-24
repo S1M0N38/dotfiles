@@ -42,7 +42,7 @@ return {
     {
       "<leader>fc",
       function()
-        Snacks.picker.files({ cwd = vim.fn.expand("$XDG_CONFIG_HOME") })
+        Snacks.picker.files({ cwd = vim.fn.expand("$XDG_CONFIG_HOME"), hidden = true })
       end,
       desc = "Find Config File",
     },
