@@ -84,7 +84,7 @@ dgit pull
 
 
 > [!CAUTION]
-> Never commit API keys, tokens, or passwords.
+> Never commit API keys, tokens, passwords, logs or history files, or any sensitive information.
 
 
 ### Using `lgit` Interface
