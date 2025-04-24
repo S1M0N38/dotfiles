@@ -10,10 +10,17 @@ compinit
 
 # Aliases
 alias ll='ls -lah --color=auto'
-alias lgit='lazygit'
 alias lvim="NVIM_APPNAME=lazyvim nvim"
-alias git-dots="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-alias lgit-dots="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME lazygit"
+alias dgit="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
-# starship prompt
+# Functions
+function lgit() {
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    GIT_DIR="$HOME/.dotfiles" GIT_WORK_TREE="$HOME" lazygit
+  else
+    lazygit
+  fi
+}
+
+# Prompt
 eval "$(starship init zsh)"
