@@ -19,7 +19,7 @@ return {
             icon = " ",
             key = "c",
             desc = "Config",
-            action = ':lua Snacks.dashboard.pick("files", {cwd = vim.fn.expand("$XDG_CONFIG_HOME")})',
+            action = ':lua Snacks.dashboard.pick("files", {cwd = vim.fn.expand("$XDG_CONFIG_HOME"), hidden = true})',
             -- NOTE: open XDG_CONFIG_HOME instead of Lazyvim Config
           },
           { icon = " ", key = "s", desc = "Restore Session", section = "session" },
