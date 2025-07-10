@@ -23,3 +23,6 @@ vim.g.snacks_animate = false
 
 -- Cursor shape (set to beam in terminal mode)
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:ver25-blinkon500-blinkoff500-TermCursor"
+
+-- Remove ai suggestion from completion menu
+vim.g.ai_cmp = false
