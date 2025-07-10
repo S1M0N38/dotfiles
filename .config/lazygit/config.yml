@@ -1,0 +1,4 @@
+customCommands:
+  - key: 'b'
+    context: 'global'
+    command: 'git open'
