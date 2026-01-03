@@ -5,11 +5,16 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# Editor
 export EDITOR="nvim"
 
 # uv
 export UV_CACHE_DIR="$XDG_CACHE_HOME/uv"
 export UV_PYTHON_PREFERENCE="only-managed"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # rust
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
@@ -28,3 +33,6 @@ fi
 if [[ ":$PATH:" != *":$CARGO_HOME/bin:"* ]]; then
     export PATH="$CARGO_HOME/bin:$PATH"
 fi
+
+# LM Studio CLI
+export PATH="$PATH:/Users/simo/.lmstudio/bin"
