@@ -66,9 +66,6 @@ run = ["layout floating", 'move-node-to-workspace 1']
 if.app-id = "com.valvesoftware.steam"
 run = ['layout tiling', 'move-node-to-workspace 1']
 
-[[on-window-detected]]
-if.app-id = "com.Balatro.localthunk"
-run = ['layout tiling', 'move-node-to-workspace 9']
 
 # Browser applications
 
@@ -78,7 +75,7 @@ run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 1' # useful for playwright
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
@@ -96,7 +93,7 @@ run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
-run = ["layout floating", 'move-node-to-workspace 3']
+run = ["layout floating", 'move-node-to-workspace 7']
 
 # VS Code
 
@@ -136,9 +133,10 @@ run = 'move-node-to-workspace 7'
 if.app-id = 'ai.elementlabs.lmstudio'
 run = 'move-node-to-workspace 7'
 
-[[on-window-detected]]
-if.app-id = 'com.anthropic.claudefordesktop'
-run = 'move-node-to-workspace 7'
+# This breaks the quick chat window
+# [[on-window-detected]]
+# if.app-id = 'com.anthropic.claudefordesktop'
+# run = ["layout floating", 'move-node-to-workspace 7']
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
@@ -167,3 +165,7 @@ if.during-aerospace-startup = false
 if.app-id = 'app.zen-browser.zen'
 if.window-title-regex-substring = 'Picture-in-Picture'
 run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = "com.Balatro.localthunk"
+run = ['layout tiling', 'move-node-to-workspace 9']
