@@ -165,7 +165,6 @@ The following tools are installed in `$XDG_BIN_HOME` (`~/.local/bin`):
 - [lazydocker](https://github.com/jesseduffield/lazydocker) - Terminal UI for Docker
 - [lazygit](https://github.com/jesseduffield/lazygit) - Terminal UI for Git commands
 - [tmux](https://github.com/tmux/tmux) - Terminal multiplexer (config via [tau](https://github.com/S1M0N38/tau))
-- [zellij](https://zellij.sc/) - Modern terminal workspace
 
 #### AI Coding Agents
 
@@ -180,7 +179,6 @@ The following tools are installed in `$XDG_BIN_HOME` (`~/.local/bin`):
 
 #### Formatting & Linting
 
-- [biome](https://biomejs.dev/) - Fast formatter and linter for JS/TS/JSON/CSS
 - [lua-language-server](https://github.com/LuaLS/lua-language-server) - Lua language server
 - [selene](https://github.com/Kampfkarren/selene) - Lua linter
 - [shellcheck](https://www.shellcheck.net/) - Shell script static analysis
