@@ -1,1 +1,1 @@
-/Users/simo/Developer/tau/wezterm.lua
+/Users/simo/Developer/tau/config/wezterm.lua
