@@ -16,20 +16,18 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import/override with your plugins
     { import = "plugins" },
   },
   ---@diagnostic disable-next-line: assign-type-mismatch
   dev = { path = "~/Developer", patterns = { "S1M0N38" } },
-  change_detection = { notify = false },
   defaults = { lazy = false, version = false },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true, notify = false },
   rocks = { hererocks = true },
   performance = {
     rtp = {
+      -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
         "matchit",
