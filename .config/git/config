@@ -21,3 +21,7 @@
 
 [rebase]
   gpgSign = true
+[core]
+	pager = delta
+[delta]
+	word-diff-regex = .
