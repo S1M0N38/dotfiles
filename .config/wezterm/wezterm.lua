@@ -1,151 +1,69 @@
-local wezterm = require("wezterm") --[[@as Wezterm]]
-local theme = require("theme") --[[@as Theme]]
-local sessions = require("sessions") --[[@as Sessions]]
-local scrollback = require("scrollback") --[[@as Scrollback]]
-
-local act = wezterm.action
+local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
--- Window
----@diagnostic disable-next-line: assign-type-mismatch
-config.window_decorations = "RESIZE | MACOS_FORCE_DISABLE_SHADOW"
----@diagnostic disable-next-line: inject-field
-config.macos_fullscreen_extend_behind_notch = true
-config.window_background_opacity = 1.8
-config.macos_window_background_blur = 000
-config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = true
-config.enable_scroll_bar = false
-config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
-}
-config.inactive_pane_hsb = {
-	hue = 1.0,
-	saturation = 0.9,
-	brightness = 0.9,
-}
+-- Set $TERM environment variable
+config.term = "wezterm"
 
--- Notifications
--- config.audible_bell = "Disabled"
+-- MacOS specific settings
+config.window_decorations = "RESIZE | MACOS_FORCE_DISABLE_SHADOW"
+
+-- Disable the tab bar
+config.enable_tab_bar = false
 
 -- Font
 config.font_size = 13
 config.font = wezterm.font("Maple Mono NF")
 
 -- Colors
-config.color_scheme = theme.get_system_color_scheme()
-
--- Update status every 30 seconds
-config.status_update_interval = 1
-
--- Setup status bar handlers
-wezterm.on("update-right-status", function(window, _)
-	local workspaces = wezterm.mux.get_workspace_names()
-	local active_workspace = wezterm.mux.get_active_workspace()
-	local colors = theme.get_system_colors()
-
-	local elements = {}
-
-	for i, workspace in ipairs(workspaces) do
-		local is_active = workspace == active_workspace
-
-		-- Set colors based on active state
-		local bg_color = is_active and colors.tab_bar.active_tab.bg_color or colors.tab_bar.inactive_tab.bg_color
-		local fg_color = is_active and colors.tab_bar.active_tab.fg_color or colors.tab_bar.inactive_tab.fg_color
-
-		-- Add workspace tab
-		table.insert(elements, { Background = { Color = bg_color } })
-		table.insert(elements, { Foreground = { Color = fg_color } })
-		table.insert(elements, {
-			Text = " " .. workspace .. " ",
-		})
-	end
-
-	window:set_right_status(wezterm.format(elements))
-end)
-
--- Setup scrollback editor
-wezterm.on("edit-scrollback", function(window, pane)
-	scrollback.edit_scrollback(window, pane)
-end)
-
--- Initialize workspace tracking
-sessions.init()
+config.color_scheme = "Tokyo Night Moon"
 
 ---Keys
-
 config.keys = {
-	-- Workspace-scoped actions (cmd+key)
-	{
-		key = "k", -- "klear"
-		mods = "SUPER",
-		action = act.Multiple({
-			act.ClearScrollback("ScrollbackAndViewport"),
-			act.SendKey({ key = "L", mods = "CTRL" }),
-		}),
-	},
-	{
-		key = "e", -- edit scrollback
-		mods = "SUPER",
-		action = act.EmitEvent("edit-scrollback"),
-	},
-	{
-		key = "h", -- tab left
-		mods = "SUPER",
-		action = act.ActivateTabRelative(-1),
-	},
-	{
-		key = "l", -- tab right
-		mods = "SUPER",
-		action = act.ActivateTabRelative(1),
-	},
+  -- Cmd+H / Cmd+L → tmux user-keys (User0 / User1) for prefix-less pane navigation
+  { key = "h", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[1;9P" }) },
+  { key = "l", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[1;9Q" }) },
+  -- Cmd+Shift+H / Cmd+Shift+L → tmux user-keys (User2 / User3) for session cycling
+  { key = "H", mods = "SUPER|SHIFT", action = wezterm.action({ SendString = "\x1b[1;9R" }) },
+  { key = "L", mods = "SUPER|SHIFT", action = wezterm.action({ SendString = "\x1b[1;9S" }) },
+  -- Super+Left / Super+Right → tmux user-keys (User6 / User7) for window reordering
+  { key = "LeftArrow", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[18;9~" }) },
+  { key = "RightArrow", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[19;9~" }) },
+  -- Super+Shift+Left / Super+Shift+Right → tmux user-keys (User8 / User9) for session reordering
+  { key = "LeftArrow", mods = "SUPER|SHIFT", action = wezterm.action({ SendString = "\x1b[20;9~" }) },
+  { key = "RightArrow", mods = "SUPER|SHIFT", action = wezterm.action({ SendString = "\x1b[21;9~" }) },
+  -- Cmd+T → tmux user-key (User4) for new window
+  { key = "t", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[15;9~" }) },
+  -- Cmd+A → tmux user-key (User5) for spawning a new pi pane in a grid layout
+  { key = "a", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[17;9~" }) },
+  -- Cmd+G → tmux user-key (User28) for lazygit floating popup
+  { key = "g", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[43;9~" }) },
+  -- Cmd+E → tmux user-key (User29) for editor floating popup
+  { key = "e", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[44;9~" }) },
+  -- Cmd+1-9 → tmux user-keys (User10-18) for prefix-less window selection by number
+  { key = "1", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[23;9~" }) },
+  { key = "2", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[24;9~" }) },
+  { key = "3", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[25;9~" }) },
+  { key = "4", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[26;9~" }) },
+  { key = "5", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[28;9~" }) },
+  { key = "6", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[29;9~" }) },
+  { key = "7", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[31;9~" }) },
+  { key = "8", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[32;9~" }) },
+  { key = "9", mods = "SUPER", action = wezterm.action({ SendString = "\x1b[33;9~" }) },
 
-	-- Workspace management (cmd+shift+key)
-	{
-		key = "h", -- workspace left
-		mods = "SUPER|SHIFT",
-		action = sessions.cycle_workspace_relative(-1),
-	},
-	{
-		key = "l", -- workspace right
-		mods = "SUPER|SHIFT",
-		action = sessions.cycle_workspace_relative(1),
-	},
-	{
-		key = "o", -- open project
-		mods = "SUPER|SHIFT",
-		action = sessions.project(),
-	},
-	{
-		key = "w", -- close workspace
-		mods = "SUPER|SHIFT",
-		action = sessions.close_current_workspace(),
-	},
+  { key = "Enter", mods = "ALT", action = wezterm.action({ SendString = "\x1b[13;3u" }) },
+  { key = "=", mods = "CTRL", action = wezterm.action.Nop },
+  { key = "-", mods = "CTRL", action = wezterm.action.Nop },
+  { key = "-", mods = "CTRL|SHIFT", action = wezterm.action.Nop },
+  { key = "=", mods = "CTRL|SHIFT", action = wezterm.action.Nop },
+}
+config.enable_kitty_keyboard = true
 
-	{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
-	{
-		key = "=",
-		mods = "CTRL",
-		action = wezterm.action.Nop,
-	},
-	{
-		key = "-",
-		mods = "CTRL",
-		action = wezterm.action.Nop,
-	},
-	{
-		key = "-",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.Nop,
-	},
-	{
-		key = "=",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.Nop,
-	},
+-- Remove all window padding so tmux fills the entire terminal
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
 }
 
 return config
