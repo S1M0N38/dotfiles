@@ -75,7 +75,11 @@ run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 1' # useful for playwright
+run = 'move-node-to-workspace 7' # useful for playwright
+
+[[on-window-detected]]
+if.app-id = 'com.google.chrome.for.testing'
+run = 'move-node-to-workspace 7' # use by python playwright
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
@@ -93,7 +97,7 @@ run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
-run = ["layout floating", 'move-node-to-workspace 7']
+run = ["layout floating", 'move-node-to-workspace 3']
 
 # VS Code
 
@@ -115,6 +119,12 @@ run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 5'
+
+# Discord
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
 run = 'move-node-to-workspace 5'
 
 # Mail
@@ -147,6 +157,7 @@ run = 'move-node-to-workspace 7'
 [[on-window-detected]]
 if.app-id = 'ru.keepcoder.Telegram'
 run = 'move-node-to-workspace 8'
+
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
