@@ -12,6 +12,11 @@ export EDITOR="nvim"
 export UV_CACHE_DIR="$XDG_CACHE_HOME/uv"
 export UV_PYTHON_PREFERENCE="only-managed"
 
+# npm
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

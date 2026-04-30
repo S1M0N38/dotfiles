@@ -14,6 +14,7 @@ setopt HIST_VERIFY
 
 # Load completion system
 fpath+=$XDG_CONFIG_HOME/zsh/functions
+fpath+=$HOME/.zfunc
 autoload -Uz compinit
 compinit
 
@@ -83,7 +84,7 @@ zle -N dev_repo_picker_widget
 bindkey '^xo' dev_repo_picker_widget
 
 # # Use emacs keybindings in command mode
-# bindkey -e
+bindkey -e
 
 # Edit command line with CTRL-X E
 autoload -U edit-command-line
@@ -107,5 +108,12 @@ eval "$(ty generate-shell-completion zsh)"
 # Cursor Agent
 # eval "$(~/.local/bin/cursor-agent shell-integration zsh)"
 
+# Android / Java development
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 # bun completions
 [ -s "/Users/simo/.bun/_bun" ] && source "/Users/simo/.bun/_bun"
+
