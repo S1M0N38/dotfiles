@@ -1,4 +1,11 @@
 customCommands:
-  - key: 'b'
-    context: 'global'
-    command: 'git open'
+  - key: "b"
+    context: "global"
+    command: "git open"
+    subprocess: true
+    description: "Open in browser"
+git:
+  overrideGpg: true
+  paging:
+    colorArg: always
+    pager: delta --paging=never --line-numbers --word-diff-regex=.
